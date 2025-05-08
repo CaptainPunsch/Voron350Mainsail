@@ -7,6 +7,15 @@ klippy_uds_address = ~/printer_data/comms/klippy.sock
 [file_manager]
 enable_object_processing = False
 
+[update_manager klipper_tmc_autotune]
+type = git_repo
+channel = dev
+path = ~/klipper_tmc_autotune
+origin = https://github.com/andrewmcgr/klipper_tmc_autotune.git
+managed_services = klipper
+primary_branch = main
+install_script = install.sh
+
 [authorization]
 cors_domains = 
 	https://my.mainsail.xyz
@@ -28,7 +37,7 @@ trusted_clients =
 
 [announcements]
 subscriptions = 
-	mainsail
+	octoeverywhere
 
 [update_manager]
 refresh_interval = 168
@@ -46,6 +55,15 @@ primary_branch = master
 path = ~/mainsail-config
 origin = https://github.com/mainsail-crew/mainsail-config.git
 managed_services = klipper
+
+[timelapse]
+
+[update_manager timelapse]
+type = git_repo
+primary_branch = main
+path = ~/moonraker-timelapse
+origin = https://github.com/mainsail-crew/moonraker-timelapse.git
+managed_services = klipper moonraker
 
 [update_manager crowsnest]
 type = git_repo
@@ -84,4 +102,22 @@ requirements = requirements.txt
 system_dependencies = system-dependencies.json
 primary_branch = main
 managed_services = klipper
+
+[update_manager octoeverywhere]
+type = git_repo
+channel = beta
+path = /home/pi/octoeverywhere
+origin = https://github.com/QuinnDamerell/OctoPrint-OctoEverywhere.git
+env = /home/pi/octoeverywhere-env/bin/python
+requirements = requirements.txt
+install_script = install.sh
+managed_services = 
+	octoeverywhere
+
+[update_manager klipper-backup]
+type = git_repo
+path = ~/klipper-backup
+origin = https://github.com/Staubgeborener/klipper-backup.git
+managed_services = moonraker
+primary_branch = main
 
